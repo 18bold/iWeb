@@ -1,0 +1,102 @@
+<div style="padding: 35px;">
+	<form class="layui-form " action=" " id="createform">
+		<div class="user_left">
+			<div class="layui-form-item">
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-block ">
+					<input type="text" name="username" required lay-verify="required"
+						placeholder="请输入姓名 " autocomplete="off " class="layui-input ">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">年龄</label>
+				<div class="layui-input-block">
+					<input type="text" name="age" required lay-verify="required"
+						placeholder="请输入年龄 " autocomplete="off " class="layui-input ">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">出生日期</label>
+				<div class="layui-input-block">
+					<input type="text" name="birthday" required lay-verify="required"
+						class="layui-input" id="date1">
+				</div>
+			</div>
+
+			<div class="layui-form-item ">
+				<label class="layui-form-label">状态</label>
+				<div class="layui-input-block">
+					<input type="checkbox" name="switch" lay-skin="switch"
+						lay-text="激活|关闭" checked>
+				</div>
+			</div>
+		</div>
+		<div class="user_right" style="width: 300px;">
+			<div class="layui-form-item ">
+				<button type="button" class="layui-btn" id="update1" >
+					<i class="layui-icon">&#xe67c;</i>上传图片
+				</button>
+				<div class="layui-upload-drag" id="test10">
+  					<i class="layui-icon"></i>
+  					<p>点击上传，或将文件拖拽到此处</p>
+				</div>
+			</div>
+			<div class="layui-inline" style="width:300px;height:300px">
+  				<img id="head" src="/iWeb2/images/b10.jpg" class="layui-circle" style="width:200px">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+
+<script>
+	//JavaScript代码区域
+	layui.use('element', function() {
+		var element = layui.element;
+	});
+</script>
+<script>
+	layui.use([ 'form', 'laydate', 'upload' ], function() {
+		var form = layui.form;
+		var laydate = layui.laydate;
+		var upload = layui.upload;
+
+		//监听提交
+		form.on('submit(formDemo)', function(data) {
+			layer.msg(JSON.stringify(data.field));
+			return false;
+		});
+		form.render();
+		// 日期选择器
+		laydate.render({
+			elem : '#date1' //指定元素
+		});
+
+		//执行实例
+		var uploadInst = upload.render({
+			elem : '#test10', //绑定元素
+			url : 'UploadPicServlet', //上传接口
+			method : 'post',
+			before: function(obj){
+			      //预读本地文件示例，不支持ie8
+			      obj.preview(function(index, file, result){
+			        $('#head').attr('src', result); //图片链接（base64）
+			      });
+			},
+			done : function(res) {
+				//上传完毕回调
+				layer.msg("success");
+			},
+			error : function() {
+				//请求异常回调
+				layer.msg("fail");
+			}
+		});
+	});
+</script>

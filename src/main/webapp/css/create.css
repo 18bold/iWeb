@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+.user_left {
+	float:left;
+	width:500px;
+}
+.user_right {
+	margin:0px 100px;
+	float:left;
+}

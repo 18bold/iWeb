@@ -4,37 +4,36 @@ package com.bold.services;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import com.bold.entity.User;
-import com.bold.mappers.UserMapper;
+import com.bold.repository.UserMapper;
 import com.bold.utils.MyBatisSqlSessionFactory;
 
+@Component("userService")
 public class UserService {
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
+	@Resource(name="userMapper")
+	UserMapper userMapper;
+	
+	public void setUserMapper(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
+
 	public List<User> selectAll(RowBounds rowBounds) {
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			return userMapper.selectAll(rowBounds);
-		}
-		catch (Exception e) {
-		}
-		return null;
+		return userMapper.selectAll(rowBounds);
 	}
 	
 	public User selectById(Integer id) {
 		logger.debug("select User By id:{}",id);
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			return userMapper.selectById(id);
-		}
-		catch (Exception e) {
-		}
-		return null;
+		return userMapper.selectById(id);
 	}
 	
 	public void insert(User user) {
@@ -49,32 +48,14 @@ public class UserService {
 	}
 	public int selectCount() {
 		logger.debug("select count");
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			return userMapper.selectCount();
-		}
-		catch (Exception e) {
-		}
-		return 0;
+		return userMapper.selectCount();
 	}
 	public List<User> selectByWhere(RowBounds rowBounds,HashMap<String, Object> map) {
 		logger.debug("selectByWhere");
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			return userMapper.selectByWhere(rowBounds,map);
-		}
-		catch (Exception e) {
-		}
-		return null;
+		return userMapper.selectByWhere(rowBounds,map);
 	}
 	public int selectByWhereCount(HashMap<String, Object> hashMap) {
 		logger.debug("selectByWhereCount");
-		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();){
-			UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-			return userMapper.selectByWhereCount(hashMap);
-		}
-		catch (Exception e) {
-		}
-		return 0;
+		return userMapper.selectByWhereCount(hashMap);
 	}
 }

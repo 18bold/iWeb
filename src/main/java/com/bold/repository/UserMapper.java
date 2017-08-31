@@ -1,4 +1,4 @@
-package com.bold.mappers;
+package com.bold.repository;
 
 import java.util.HashMap;
 import java.util.List;

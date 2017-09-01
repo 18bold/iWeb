@@ -33,7 +33,7 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean" />
 	</bean>
 	
-	<bean id="userService" class="com.bold.services.UserService">
-		<property name="userMapper" ref="userMapper"></property>
-	</bean>
+	<!-- 使用注解方式将bean注册必须加入这句 -->
+	<context:component-scan base-package="com.bold.services"></context:component-scan>
+	
 </beans>

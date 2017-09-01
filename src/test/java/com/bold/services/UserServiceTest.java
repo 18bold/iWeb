@@ -8,22 +8,20 @@ import javax.annotation.Resource;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bold.entity.User;
 import com.bold.utils.NameUtil;
 
+
+@ContextConfiguration("/beans.xml")
+@RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
-	AbstractApplicationContext ac = new ClassPathXmlApplicationContext("beans.xml");
+	@Resource(name="userService")
 	UserService userService;
 	@Test
 	public void testSelectAll() {
-		userService = (UserService) ac.getBean("userService");
 		RowBounds rowBounds = new RowBounds(0,25);
 		List<User> users = userService.selectAll(rowBounds);
 		for (User user : users) {
@@ -32,7 +30,6 @@ public class UserServiceTest {
 	}
 	@Test
 	public void testSelectById() {
-		userService = (UserService) ac.getBean("userService");
 		User user = userService.selectById(1);
 		System.out.println(user.toString());
 	}
@@ -50,7 +47,6 @@ public class UserServiceTest {
 	
 	@Test
 	public void testSelectCount() {
-		userService = (UserService) ac.getBean("userService");
 		System.out.println(userService.selectCount());
 	}
 }

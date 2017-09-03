@@ -34,7 +34,7 @@ public class UserOneServlet extends HttpServlet {
 		List<User> userList2 = new ArrayList<User>();
 		userList2.add(user);
 		response.setContentType("application/json;charset=utf-8");
-	    Map<String, Object> jsonMap = new HashMap<>();
+	    Map<String, Object> jsonMap = new HashMap<String, Object>();
 	    jsonMap.put("code", 0);
 	    jsonMap.put("msg", "");
 	    jsonMap.put("count",userList2.size());

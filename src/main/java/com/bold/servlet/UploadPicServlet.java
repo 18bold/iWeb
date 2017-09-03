@@ -118,7 +118,7 @@ public class UploadPicServlet extends HttpServlet {
 		} else {
 			System.out.println("表单的enctype 类型错误");
 		}
-		Map<String, Object> jsonMap = new HashMap<>();
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		jsonMap.put("state", "success");
 		String json = JSON.toJSONString(jsonMap);
 	    response.getWriter().write(json);

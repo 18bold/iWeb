@@ -1,1 +1,12 @@
 /target/
+target/m2e-wtp/web-resources/META-INF/maven/com.bold/iWeb2/pom.properties
+*.class
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
+.idea/

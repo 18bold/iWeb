@@ -1,4 +1,4 @@
-package com.bold.services;
+package com.bold.service;
 
 import java.util.List;
 import java.util.Random;
@@ -15,7 +15,9 @@ import com.bold.entity.User;
 import com.bold.utils.NameUtil;
 
 
-@ContextConfiguration("/beans.xml")
+@ContextConfiguration({
+		"classpath:spring/spring-dao.xml",
+		"classpath:spring/spring-service.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class UserServiceTest {
 	@Resource(name="userService")

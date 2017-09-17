@@ -3,11 +3,11 @@ package com.bold.utils;
 import javax.servlet.http.HttpServletRequest;
 
 public class RequestUtil {
-	public static Integer getInt(HttpServletRequest request, String param, int def) {
-		if (request.getParameter(param)==null || request.getParameter(param)=="") {
+	public static Integer getInt(Integer param, int def) {
+		if (param == null ) {
 			return def;
 		} else {
-			return Integer.valueOf(request.getParameter(param));
+			return Integer.valueOf(param);
 		}
 	}
 }

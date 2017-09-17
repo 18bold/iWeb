@@ -2,7 +2,6 @@ package com.bold.entity;
 
 import java.util.Arrays;
 import java.sql.Date;
-import com.alibaba.fastjson.annotation.JSONField;
 
 public class User {
 	private Integer id;
@@ -11,7 +10,6 @@ public class User {
 	private String email;
 	private byte[] head;
 	private String headUrl;
-	@JSONField(name="birth",format="yyyy年mm月dd日")
 	private Date birthday;
 	private Double salary;
 	private Date gmt_create;

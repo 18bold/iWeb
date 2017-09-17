@@ -1,125 +1,126 @@
 <div style="padding: 35px;">
-	<form class="layui-form">
-		<div class="layui-form-item layui-inline">
-			<label class="layui-form-label">角色</label>
-			<div class="layui-input-inline" style="width: 100px;">
-				<select name="roleId" lay-filter="aihao">
-					<option value="-1">-全部-</option>
-					<option value="1">群众</option>
-					<option value="0">管理员</option>
-				</select>
-			</div>
-		</div>
+    <form class="layui-form">
+        <div class="layui-form-item layui-inline">
+            <label class="layui-form-label">角色</label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <select name="roleId" lay-filter="aihao">
+                    <option value="-1">-全部-</option>
+                    <option value="1">群众</option>
+                    <option value="0">管理员</option>
+                </select>
+            </div>
+        </div>
 
-		<div class="layui-form-item layui-inline">
-			<label class="layui-form-label">薪资范围</label>
-			<div class="layui-input-inline" style="width: 100px;">
-				<input type="text" name="min" placeholder="请输入" autocomplete="off"
-					class="layui-input">
-			</div>
-			<div class="layui-form-mid">-</div>
-			<div class="layui-input-inline" style="width: 100px;">
-				<input type="text" name="max" placeholder="请输入" autocomplete="off"
-					class="layui-input">
-			</div>
-		</div>
-		<div class="layui-form-item layui-inline">
-			<div class="layui-input-inline">
-				<button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
-				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-			</div>
-		</div>
-	</form>
-	<table id="userTable">
-	</table>
+        <div class="layui-form-item layui-inline">
+            <label class="layui-form-label">薪资范围</label>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="min" placeholder="请输入" autocomplete="off"
+                       class="layui-input">
+            </div>
+            <div class="layui-form-mid">-</div>
+            <div class="layui-input-inline" style="width: 100px;">
+                <input type="text" name="max" placeholder="请输入" autocomplete="off"
+                       class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item layui-inline">
+            <div class="layui-input-inline">
+                <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+    <table id="userTable">
+    </table>
 
-	<script type="text/javascript">
-		layui.use([ 'table', 'form', 'jquery' ], function(table, form, $) {
-			/* 初始化表格 */
-			var userTable = table.render({
-				elem : '#userTable', // 原始的 元素
-				height : 'auto',
-				url : 'UserListServlet', // 异步数据的地址 
-				page : true, // 是否分页
-				id : 'userTable',
-				limits : [ 10, 15, 20, 40 ],
-				limit : 10, //默认采用10
-				cols : [ [ {
-					field : 'id',
-					width : 100,
-					sort : true,
-					title : 'ID'
-				}, {
-					field : 'name',
-					width : 100,
-					title : '姓名'
-				}, {
-					field : 'age',
-					width : 100,
-					title : '年龄'
-				}, {
-					field : 'email',
-					width : 200,
-					title : '邮箱'
-				}, {
-					field : 'birth',
-					width : 160,
-					title : '生日'
-				}, {
-					field : 'salary',
-					width : 100,
-					sort : true,
-					title : '工资'
-				}, {
-					field : 'active',
-					width : 100,
-					title : '激活'
-				}, {
-					fixed : 'right',
-					width : 160,
-					align : 'center',
-					toolbar : '#barDemo'
-				} ] ]
-			});
-			/*
-			 */
-			var form = layui.form;
-			form.render();
-			/* 监听表单的提交事件
-			data里面有表单的所有数据，访问方式为data.field.表单域的名字
-			 */
-			form.on('submit(*)', function(data) {
-				/* 重新加载数据 */
-				userTable.reload({
-					where : {
-						min : data.field.min,
-						max : data.field.max,
-						roleId : data.field.roleId
-					}
-				});
-				// 终止提交
-				return false;
-			});
+    <script type="text/javascript">
+        layui.use(['table', 'form', 'jquery'], function (table, form, $) {
+            /* 初始化表格 */
+            var userTable = table.render({
+                elem: '#userTable', // 原始的 元素
+                height: 'auto',
+                url: 'user/list', // 异步数据的地址
+                page: true, // 是否分页
+                id: 'userTable',
+                limits: [10, 15, 20, 40],
+                limit: 10, //默认采用10
+                cols: [[{
+                    field: 'id',
+                    width: 100,
+                    sort: true,
+                    title: 'ID'
+                }, {
+                    field: 'name',
+                    width: 100,
+                    title: '姓名'
+                }, {
+                    field: 'age',
+                    width: 100,
+                    title: '年龄'
+                }, {
+                    field: 'email',
+                    width: 200,
+                    title: '邮箱'
+                }, {
+                    field: 'birth',
+                    width: 160,
+                    title: '生日'
+                }, {
+                    field: 'salary',
+                    width: 100,
+                    sort: true,
+                    title: '工资'
+                }, {
+                    field: 'active',
+                    width: 100,
+                    title: '激活'
+                }, {
+                    fixed: 'right',
+                    width: 160,
+                    align: 'center',
+                    toolbar: '#barDemo'
+                }]]
+            });
+            /*
+             */
+            var form = layui.form;
+            form.render();
+            /* 监听表单的提交事件
+            data里面有表单的所有数据，访问方式为data.field.表单域的名字
+             */
+            form.on('submit(*)', function (data) {
+                /* 重新加载数据 */
+                userTable.reload({
+                    url: "user/list/where",
+                    where: {
+                        min: data.field.min,
+                        max: data.field.max,
+                        roleId: data.field.roleId
+                    }
+                });
+                // 终止提交
+                return false;
+            });
 
-			//监听工具条
-			table.on('tool(userTable)', function(obj) {
-				var data = obj.data;
-				if (obj.event === 'detail') {
-					layer.msg('ID：' + data.id + ' 的查看操作');
-				} else if (obj.event === 'del') {
-					layer.confirm('真的删除行么', function(index) {
-						obj.del();
-						layer.close(index);
-					});
-				} else if (obj.event === 'edit') {
-					layer.alert('编辑行：<br>' + JSON.stringify(data))
-				}
-			});
-		});
-	</script>
-	<script type="text/html" id="barDemo">
-		<a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
-		<a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-		<a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
-	</script>
+            //监听工具条
+            table.on('tool(userTable)', function (obj) {
+                var data = obj.data;
+                if (obj.event === 'detail') {
+                    layer.msg('ID：' + data.id + ' 的查看操作');
+                } else if (obj.event === 'del') {
+                    layer.confirm('真的删除行么', function (index) {
+                        obj.del();
+                        layer.close(index);
+                    });
+                } else if (obj.event === 'edit') {
+                    layer.alert('编辑行：<br>' + JSON.stringify(data))
+                }
+            });
+        });
+    </script>
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
+        <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+    </script>
 </div>

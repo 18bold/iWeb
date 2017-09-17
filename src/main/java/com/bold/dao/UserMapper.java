@@ -1,4 +1,4 @@
-package com.bold.repository;
+package com.bold.dao;
 
 import java.util.HashMap;
 import java.util.List;

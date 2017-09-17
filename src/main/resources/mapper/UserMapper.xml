@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bold.repository.UserMapper">
+<mapper namespace="com.bold.dao.UserMapper">
 	<resultMap type="User" id="UserResult">
 		<id property="id" column="id" />
 		<result property="name" column="name" />
@@ -32,11 +32,11 @@
 	<select id="selectByWhere" parameterType="Hashmap" resultType="User">
 		select id,name,age,email,birthday,salary,gmt_create,is_active as active from crud_user
 		<where>
-			<if test=" num1 != 0 ">
-				salary &gt;= #{num1}
+			<if test=" min != 0 ">
+				salary &gt;= #{min}
 			</if>
-			<if test=" num2 != 0 "> 
-				and salary &lt;= #{num2}
+			<if test=" max != 0 ">
+				and salary &lt;= #{max}
 			</if>
 			<if test=" roleId != -1 "> 
 				and role_id = #{roleId}
@@ -46,11 +46,11 @@
 	<select id="selectByWhereCount" parameterType="Hashmap" resultType="java.lang.Integer">
 		select count(*) from crud_user
 		<where>
-			<if test=" num1 != 0 ">
-				salary &gt;= #{num1}
+			<if test=" min != 0 ">
+				salary &gt;= #{min}
 			</if>
-			<if test=" num2 != 0 "> 
-				and salary &lt;= #{num2}
+			<if test=" max != 0 ">
+				and salary &lt;= #{max}
 			</if>
 			<if test=" roleId != -1 "> 
 				and role_id = #{roleId}

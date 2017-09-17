@@ -10,3 +10,5 @@ target/m2e-wtp/web-resources/META-INF/maven/com.bold/iWeb2/pom.properties
 out
 gen
 .idea/
+/.project
+/.classpath

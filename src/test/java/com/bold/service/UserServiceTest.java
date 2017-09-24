@@ -39,7 +39,7 @@ public class UserServiceTest {
 	public void testInsert() {
 		User user = new User();
 		Random random = new Random();
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 1; i++) {
 			user.setAge(random.nextInt(50));
 			user.setName(NameUtil.getName());
 			user.setSalary((double) random.nextInt(5000));

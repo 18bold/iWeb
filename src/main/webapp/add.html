@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" charset="utf-8"></script>
+    <title>add</title>
+</head>
+<body>
+<form action="user/add" method="post" id="form1">
+    <input name="id" type="text" >
+    <input name="age" type="text" />
+    <input name="name" type="text" />
+    <input name="birthday" type="text" />
+    <input type="submit">
+</form>
+<script>
+    function send() {
+        $.ajax({
+            url:"user/add",
+            contentType : 'application/json',
+            data: {
+                id:$("#id1").val(),
+                name : $("#name").val()
+            },
+            dataType: "json",
+            type:"post",
+            success:function (data) {
+                alert("success");
+            },
+            error:function (data) {
+                alert("error");
+            }
+        })
+    }
+</script>
+</body>
+</html>
